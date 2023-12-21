@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int degree, i;
+    double x, result = 0;
+    printf("Enter the degree of the polynomial: ");
+    scanf("%d", &degree);
+    double coefficients[degree + 1];
+    printf("Enter the coefficients:\n");
+    for (i = 0; i <= degree; i++) {
+        scanf("%lf", &coefficients[i]);
+    }
+    printf("Enter the value of x: ");
+    scanf("%lf", &x);
+    for (i = degree; i >= 0; i--) {
+        result = result * x + coefficients[i];
+    }
+    printf("P(%lf) = %lf\n", x, result);
+    return 0;
+}
