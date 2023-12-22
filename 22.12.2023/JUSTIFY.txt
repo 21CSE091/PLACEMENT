@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <string.h>
+void justifySentence(char sentence[], int screenLength) {
+    int len = strlen(sentence);
+    int spacesToAdd = screenLength - len;
+    if (spacesToAdd <= 0) {
+        printf("%s\n", sentence);
+        return;
+    }
+    int spaceCount = 0;
+    for (int i = 0; i < len; i++) {
+        if (sentence[i] == ' ') {
+            spaceCount++;
+        }
+    }
+    int spacesPerGap = (spaceCount > 0) ? spacesToAdd / spaceCount : 0;
+    int extraSpaces = (spaceCount > 0) ? spacesToAdd % spaceCount : 0;
+    for (int i = 0; i < len; i++) {
+        if (sentence[i] != ' ') {
+            printf("%c", sentence[i]);
+        } else {
+            int stars = spacesPerGap + ((extraSpaces > 0) ? 1 : 0);
+            while (stars > 0) {
+                printf("*");
+                stars--;
+            }
+            extraSpaces--;
+        }
+    }
+    printf("\n");
+}
+int main() {
+    char sentence1[] = "Welcome to Zoho Corporation";
+    int screenLength1 = 34;
+    printf("Sample Output 1: ");
+    justifySentence(sentence1, screenLength1);
+    char sentence2[] = "Welcome to Zoho Corporation";
+    int screenLength2 = 36;
+    printf("Sample Output 2: ");
+    justifySentence(sentence2, screenLength2);
+    return 0;
+}
